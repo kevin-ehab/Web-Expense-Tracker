@@ -168,8 +168,6 @@ def view_data():
     days = len(pd.unique(extracted_df['date']))
     if days > 30:
         days = 30
-    if days == 1:
-        return jsonify({'message':'You need to enter more days to view the dashboard'})
     extracted_df = extracted_df.tail(days)
 
     total_sum = sum(extracted_df['total'])
