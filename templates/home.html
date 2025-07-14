@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.png') }}">
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .container {
+    text-align: center;
+    background-color: #ffffffcc;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+    color: #333;
+    margin-bottom: 10px;
+    }
+
+    p {
+    color: #555;
+    margin-bottom: 30px;
+    }
+
+    .buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    }
+
+    .btn {
+    padding: 12px 30px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+    background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: right;">
+    <button style="background: white; margin: 0; border-radius: 100px; display: none; text-align: left;" onclick="home()" display: none;" id="logout">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+            stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+    </button>
+    </div>
+    <img src="{{url_for('static', filename= 'logo.png')}}" style="width: 300px; height: 300px;">
+    <h2>💰Expense tracker App💰</h2>
+    <br>
+    <div class="buttons">
+      <button class="btn" id="login">Login</button>
+      <button class="btn" id="signup">Sign Up</button>
+      <button class="btn" id="options" style="display: none;">Options</button>
+    </div><br><br>
+  </div>
+  <script src="{{url_for('static', filename= 'home.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Expense tracker insights</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+                background: #f4f6f8;
+                color: #333;
+            }
+
+            header {
+                background: linear-gradient(to right, #4facfe, #00f2fe);
+                color: black;
+                color: black;
+                text-shadow:
+                    -1px -1px 0 white,
+                    1px -1px 0 white,
+                    -1px  1px 0 white,
+                    1px  1px 0 white;
+                padding: 20px;
+                text-align: center;
+            }
+            h1, h2, h3 {
+                margin: 10px 0;
+            }
+            .container{
+                max-width: 1000px;
+                margin: 30px auto;
+                padding: 20px;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .summary{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+            .summary div{
+                flex: 1 1 30%;
+                background: #ecf0f1;
+                margin: 10px;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            }
+            .chart-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px dashed #bbb;
+            border-radius: 10px;
+            text-align: center;
+            background: #ffffff;
+            }
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            }
+            table, th, td {
+            border: 1px solid #ccc;
+            }
+            th, td {
+            padding: 10px;
+            text-align: center;
+            }
+            th {
+            background: #2c3e50;
+            color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <button onclick="back()" style="background: white; margin: 0; border-radius: 100px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" stroke-width="3" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H4.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L4.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+                </svg>
+            </button>
+            <button style="background: white; margin: 0; border-radius: 100px;" onclick="home()">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+                    <path d="M 15 2 A 1 1 0 0 0 14.300781 2.2851562 L 3.3925781 11.207031 A 1 1 0 0 0 3.3554688 11.236328 L 3.3183594 11.267578 L 3.3183594 11.269531 A 1 1 0 0 0 3 12 A 1 1 0 0 0 4 13 L 5 13 L 5 24 C 5 25.105 5.895 26 7 26 L 23 26 C 24.105 26 25 25.105 25 24 L 25 13 L 26 13 A 1 1 0 0 0 27 12 A 1 1 0 0 0 26.681641 11.267578 L 26.666016 11.255859 A 1 1 0 0 0 26.597656 11.199219 L 25 9.8925781 L 25 6 C 25 5.448 24.552 5 24 5 L 23 5 C 22.448 5 22 5.448 22 6 L 22 7.4394531 L 15.677734 2.2675781 A 1 1 0 0 0 15 2 z M 18 15 L 22 15 L 22 23 L 18 23 L 18 15 z"></path>
+                 </svg>
+            </button>
+            <h1>📊Expense Tracker Insights📊</h1>
+            <h2>for the past <strong>3 days</strong></h2>
+        </header>
+
+        <div class="container">
+
+            <h2>User: kevinehab8801@gmail.com</h2>
+
+            <div class="summary">
+                <div>
+                    <h3>Monthly Budget:</h3>
+                    <p><strong>30000</strong></p>
+                </div>
+                <div>
+                    <h3>Average Daily Spending:</h3>
+                    <p><strong>1210</strong></p>
+                </div>
+                <div>
+                    <h3>Total Expenses:</h3>
+                    <p><strong>3630</strong></p>
+                </div>
+                <div>
+                    <h3>Top Category:</h3>
+                    <p><strong>Transportation</strong></p>
+                </div>
+                <div>
+                    <h3>Biggest Spending Day:</h3>
+                    <p><strong>2025-07-12</strong></p>
+                </div>
+                <div>
+                    <h3>Smallest Spending Day:</h3>
+                    <p><strong>2025-07-13</strong></p>
+                </div>
+            </div>
+
+            <h3>Expenses by Category:</h3>
+            <ul>
+                <li>🛒 Shopping: 700</li>
+                <li>🍔 Food: 400</li>
+                <li>🚗 Transportation: 1210</li>
+                <li>🏠 Bills: 1000</li>
+                <li>🎮 Entertainment: 120</li>
+                <li>💊 Healthcare: 200</li>
+            </ul>
+            <h3>💡 Saving Goal report:</h3>
+            <ul>
+                <li>⚠️ Be carful. You need to spend less to reach your saving goal, which is <strong>1500</strong>. So decrease your spending by 21% !</li>
+            </ul>
+            
+            
+
+            <div class="chart-section">
+                <h3>⭕ Expenses Pie Chart</h3>
+                <img src="static\charts\pie.png" alt="Chart Placeholder" style="max-width: 100%; border-radius: 8px;">
+            </div>
+            <div class="chart-section">
+                <h3>📉 Spending Over Time</h3>
+                <img src="static\charts\trend.png" alt="Trend Chart" style="max-width:100%; border-radius:8px;">
+                <h5 style="text-align: right;">🔵 : Average Spending &nbsp; &nbsp; &nbsp;</h5>
+                <h5 style="text-align: right;">🔴 : Suggested Spending  &nbsp;</h5>
+            </div>
+            <div class="chart-section">
+                <h3>📈 How Much of Your Budget You Have Spent Over Time</h3>
+                <img src="static\charts\plot.png" alt="Chart Placeholder" style="max-width: 100%; border-radius: 8px;">
+            </div>
+            <h3>Expenses Table:</h3>
+            <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>account</th>
+      <th>date</th>
+      <th>food</th>
+      <th>transportation</th>
+      <th>shopping</th>
+      <th>bills</th>
+      <th>entertainment</th>
+      <th>healthcare</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kevinehab8801@gmail.com</td>
+      <td>2025-07-12</td>
+      <td>150</td>
+      <td>200</td>
+      <td>300</td>
+      <td>1000</td>
+      <td>120</td>
+      <td>0</td>
+      <td>1770</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kevinehab8801@gmail.com</td>
+      <td>2025-07-13</td>
+      <td>150</td>
+      <td>10</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>260</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kevinehab8801@gmail.com</td>
+      <td>2025-07-14</td>
+      <td>100</td>
+      <td>1000</td>
+      <td>300</td>
+      <td>0</td>
+      <td>0</td>
+      <td>200</td>
+      <td>1600</td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+    <script>
+        function home(){
+            window.location = '/'
+        }
+        function back(){
+            window.location = '/options'
+        }
+    </script>
+    </body>
+</html>
