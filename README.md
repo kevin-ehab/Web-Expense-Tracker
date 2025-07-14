@@ -92,6 +92,7 @@ Web-Expense-Tracker/<br>
 ├── simple_encrypter.py<br>
 ├── Classified.csv<br>
 ├── Expenses.csv<br>
+├── template.html<br>
 ├── templates/<br>
 │ ├── home.html<br>
 │ ├── login.html<br>
@@ -99,7 +100,7 @@ Web-Expense-Tracker/<br>
 │ ├── options.html<br>
 │ ├── categories.html<br>
 │ ├── change.html<br>
-│ └── template.html<br>
+│ └── dashboard.html<br>
 ├── static/<br>
 │ ├── login.css<br>
 │ └── charts/<br>
