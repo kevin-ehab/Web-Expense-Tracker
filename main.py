@@ -264,4 +264,4 @@ def view_data():
         f.write(html)
     return jsonify({'message':"Dashboard generated successfully"})
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
