@@ -41,7 +41,7 @@ An interactive and secure expense tracking web app built with **Flask**, **Panda
 
 
 ## 🕹 Demo link
-Try the app using this link: <a href='https://bba18d20-6366-4132-9e3d-35a8b34cc7be-00-2z4simwq327lt.janeway.replit.dev:5000/'>Expense Tracker</a>
+Try the app using this link: [Expense Tracker](https://web-expense-tracker-production.up.railway.app/)
 
 ---
 
