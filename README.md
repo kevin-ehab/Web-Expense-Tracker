@@ -75,6 +75,7 @@ pip install flask pandas matplotlib jinja2
 
 - A static/ folder with:
   - `login.css`
+  - a `JS` file for almost each html file
   - charts/ folder for saving generated charts
 ### 4. Run the App
 ```bash
