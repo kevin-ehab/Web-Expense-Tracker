@@ -88,125 +88,72 @@
                  </svg>
             </button>
             <h1>📊Expense Tracker Insights📊</h1>
-            <h2>for the past <strong>3 days</strong></h2>
+            <h2>for the past <strong>{{days}} days</strong></h2>
         </header>
 
         <div class="container">
 
-            <h2>User: kevinehab8801@gmail.com</h2>
+            <h2>User: {{account}}</h2>
 
             <div class="summary">
                 <div>
                     <h3>Monthly Budget:</h3>
-                    <p><strong>30000</strong></p>
+                    <p><strong>{{budget}}</strong></p>
                 </div>
                 <div>
                     <h3>Average Daily Spending:</h3>
-                    <p><strong>1210</strong></p>
+                    <p><strong>{{daily_spending}}</strong></p>
                 </div>
                 <div>
                     <h3>Total Expenses:</h3>
-                    <p><strong>3630</strong></p>
+                    <p><strong>{{total_sum}}</strong></p>
                 </div>
                 <div>
                     <h3>Top Category:</h3>
-                    <p><strong>Transportation</strong></p>
+                    <p><strong>{{max_category}}</strong></p>
                 </div>
                 <div>
                     <h3>Biggest Spending Day:</h3>
-                    <p><strong>2025-07-12</strong></p>
+                    <p><strong>{{biggest_day}}</strong></p>
                 </div>
                 <div>
                     <h3>Smallest Spending Day:</h3>
-                    <p><strong>2025-07-13</strong></p>
+                    <p><strong>{{smallest_day}}</strong></p>
                 </div>
             </div>
 
             <h3>Expenses by Category:</h3>
             <ul>
-                <li>🛒 Shopping: 700</li>
-                <li>🍔 Food: 400</li>
-                <li>🚗 Transportation: 1210</li>
-                <li>🏠 Bills: 1000</li>
-                <li>🎮 Entertainment: 120</li>
-                <li>💊 Healthcare: 200</li>
+                <li>🛒 Shopping: {{shopping}}</li>
+                <li>🍔 Food: {{food}}</li>
+                <li>🚗 Transportation: {{transportation}}</li>
+                <li>🏠 Bills: {{bills}}</li>
+                <li>🎮 Entertainment: {{entertainment}}</li>
+                <li>💊 Healthcare: {{healthcare}}</li>
             </ul>
             <h3>💡 Saving Goal report:</h3>
             <ul>
-                <li>⚠️ Be carful. You need to spend less to reach your saving goal, which is <strong>1500</strong>. So decrease your spending by 21% !</li>
+                <li>{{message}}</li>
             </ul>
             
             
 
             <div class="chart-section">
                 <h3>⭕ Expenses Pie Chart</h3>
-                <img src="static\charts\pie.png" alt="Chart Placeholder" style="max-width: 100%; border-radius: 8px;">
+                <img src="{{pie}}" alt="Chart Placeholder" style="max-width: 100%; border-radius: 8px;">
             </div>
             <div class="chart-section">
                 <h3>📉 Spending Over Time</h3>
-                <img src="static\charts\trend.png" alt="Trend Chart" style="max-width:100%; border-radius:8px;">
+                <img src="{{trend}}" alt="Trend Chart" style="max-width:100%; border-radius:8px;">
                 <h5 style="text-align: right;">🔵 : Average Spending &nbsp; &nbsp; &nbsp;</h5>
                 <h5 style="text-align: right;">🔴 : Suggested Spending  &nbsp;</h5>
             </div>
             <div class="chart-section">
                 <h3>📈 How Much of Your Budget You Have Spent Over Time</h3>
-                <img src="static\charts\plot.png" alt="Chart Placeholder" style="max-width: 100%; border-radius: 8px;">
+                <img src="{{plot}}" alt="Chart Placeholder" style="max-width: 100%; border-radius: 8px;">
             </div>
             <h3>Expenses Table:</h3>
-            <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>account</th>
-      <th>date</th>
-      <th>food</th>
-      <th>transportation</th>
-      <th>shopping</th>
-      <th>bills</th>
-      <th>entertainment</th>
-      <th>healthcare</th>
-      <th>total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>kevinehab8801@gmail.com</td>
-      <td>2025-07-12</td>
-      <td>150</td>
-      <td>200</td>
-      <td>300</td>
-      <td>1000</td>
-      <td>120</td>
-      <td>0</td>
-      <td>1770</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>kevinehab8801@gmail.com</td>
-      <td>2025-07-13</td>
-      <td>150</td>
-      <td>10</td>
-      <td>100</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>260</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>kevinehab8801@gmail.com</td>
-      <td>2025-07-14</td>
-      <td>100</td>
-      <td>1000</td>
-      <td>300</td>
-      <td>0</td>
-      <td>0</td>
-      <td>200</td>
-      <td>1600</td>
-    </tr>
-  </tbody>
-</table>
+            {{html_table | safe}}
         </div>
     <script>
         function home(){

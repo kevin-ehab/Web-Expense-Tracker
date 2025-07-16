@@ -9,7 +9,6 @@ import pandas as pd
 classified = pd.read_csv('Classified.csv')
 expenses = pd.read_csv('Expenses.csv')
 
-from jinja2 import FileSystemLoader, Environment
 from flask import Flask, render_template, jsonify, request
 app = Flask(__name__)
 
@@ -28,10 +27,6 @@ def signup_page():
 @app.route('/options')
 def options_page():
     return render_template('options.html')
-
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
 
 @app.route('/categories')
 def categories_page():
@@ -93,7 +88,7 @@ def signup():
 def categories():
     global expenses
     date = datetime.date.today().strftime(r'%Y-%m-%d')
-    if date in expenses['date'].values:
+    if date in expenses[expenses['account'] == account]['date'].values:
         return jsonify({'message': "Already entered data for today", 'redirect':1})
     data = request.get_json()
     food = data.get('food')
@@ -129,7 +124,7 @@ def categories():
 
 @app.route('/change2', methods=['POST'])
 def change():
-    global classified
+    global classified, account
     data = request.get_json()
     income = data.get('income')
     if income.strip() == '':
@@ -155,111 +150,108 @@ def change():
     classified.to_csv('Classified.csv', index=False)
     return jsonify({'message':'Saved successfully', 'redirect':1})
 
-@app.route('/dashboard2')
+@app.route('/dashboard')
 def view_data():
-    global expenses, account
-    income = int(simple_encrypter.decrypt({'code': classified[classified['account'] == account]['income_code'].iloc[0],
-                                           'key': classified[classified['account'] == account]['income_key'].iloc[0]}))
-    
-    saving = classified.loc[classified['account'] == account, 'saving'].iloc[0]
-    expenses = pd.read_csv('Expenses.csv')
-    extracted_df = expenses[expenses['account'] == account]
+    global expenses, account, classified
+    try:
+        income = int(simple_encrypter.decrypt({'code': classified[classified['account'] == account]['income_code'].iloc[0],
+                                            'key': classified[classified['account'] == account]['income_key'].iloc[0]}))
+        
+        saving = classified.loc[classified['account'] == account, 'saving'].iloc[0]
+        expenses = pd.read_csv('Expenses.csv')
+        extracted_df = expenses[expenses['account'] == account]
 
-    days = len(pd.unique(extracted_df['date']))
-    if days > 30:
-        days = 30
-    extracted_df = extracted_df.tail(days)
+        days = len(pd.unique(extracted_df['date']))
+        if days > 30:
+            days = 30
+        extracted_df = extracted_df.tail(days)
 
-    total_sum = sum(extracted_df['total'])
-    food = sum(extracted_df['food'])
-    transportation = sum(extracted_df['transportation'])
-    shopping = sum(extracted_df['shopping'])
-    bills = sum(extracted_df['bills'])
-    entertainment = sum(extracted_df['entertainment'])
-    healthcare= sum(extracted_df['healthcare'])
+        total_sum = sum(extracted_df['total'])
+        food = sum(extracted_df['food'])
+        transportation = sum(extracted_df['transportation'])
+        shopping = sum(extracted_df['shopping'])
+        bills = sum(extracted_df['bills'])
+        entertainment = sum(extracted_df['entertainment'])
+        healthcare= sum(extracted_df['healthcare'])
 
-    sum_by_categories = {"food":food, 
-                         "transportation":transportation,
-                         "shopping": shopping,
-                         "bills":bills,
-                         "entertainment":entertainment,
-                         "healthcare": healthcare}
-    max_category = max(sum_by_categories, key=sum_by_categories.get)
-    max_category = max_category.title()
+        sum_by_categories = {"food":food, 
+                            "transportation":transportation,
+                            "shopping": shopping,
+                            "bills":bills,
+                            "entertainment":entertainment,
+                            "healthcare": healthcare}
+        max_category = max(sum_by_categories, key=sum_by_categories.get)
+        max_category = max_category.title()
 
-    biggest_day = extracted_df[extracted_df['total'] == extracted_df['total'].max()]['date'].iloc[0]
-    smallest_day = extracted_df[extracted_df['total'] == extracted_df['total'].min()]['date'].iloc[0]
+        biggest_day = extracted_df[extracted_df['total'] == extracted_df['total'].max()]['date'].iloc[0]
+        smallest_day = extracted_df[extracted_df['total'] == extracted_df['total'].min()]['date'].iloc[0]
 
-    daily_spending = round(total_sum / days)
+        daily_spending = round(total_sum / days)
 
-    if daily_spending > (income - saving)/30:
-        decrease = round(((daily_spending - (income - saving)/30) / daily_spending) * 100)
-        message = '⚠️ Be carful. You need to spend less to reach your saving goal, '
-        message += f'which is <strong>{saving}</strong>. '
-        message += f'So decrease your spending by {decrease}% !'
-    else:
-        message = f'✅ You are on the right track to achieving your saving goal! Which is {saving}'
-    #pie chart:
-    plt.figure(figsize=(6, 6))
-    plt.pie(sum_by_categories.values(), labels=sum_by_categories.keys(), autopct='%1.1f%%', startangle=140)
-    plt.title('Expenses by Category')
-    plt.savefig(os.path.join('static', 'charts', 'pie.png'))
-    plt.close()
-    
-    #trend chart:
-    plt.figure(figsize=(8, 6))
-    plt.plot(extracted_df['date'], extracted_df['total'])
-    plt.axhline(daily_spending, color="#00039e", linestyle='--',
-                 linewidth=2, label=f'Average spending: ({daily_spending})')
-    plt.axhline(round(income/30), color="#b30000", linestyle='--',
-                linewidth=2, label=f'Suggested spending: ({round(income/30)})')
-    plt.xticks(rotation=90)
-    plt.title('Expense Trend Over Time')
-    plt.savefig(os.path.join('static', 'charts','trend.png'))
-    plt.close()
+        if daily_spending > (income - saving)/30:
+            decrease = round(((daily_spending - (income - saving)/30) / daily_spending) * 100)
+            message = '⚠️ Be carful. You need to spend less to reach your saving goal, '
+            message += f'which is <strong>{saving}</strong>. '
+            message += f'So decrease your spending by {decrease}% !'
+        else:
+            message = f'✅ You are on the right track to achieving your saving goal! Which is {saving}'
+        #pie chart:
+        plt.figure(figsize=(6, 6))
+        plt.pie(sum_by_categories.values(), labels=sum_by_categories.keys(), autopct='%1.1f%%', startangle=140)
+        plt.title('Expenses by Category')
+        plt.savefig(os.path.join('static', 'charts', 'pie.png'))
+        plt.close()
+        
+        #trend chart:
+        plt.figure(figsize=(8, 6))
+        plt.plot(extracted_df['date'], extracted_df['total'])
+        plt.axhline(daily_spending, color="#00039e", linestyle='--',
+                    linewidth=2, label=f'Average spending: ({daily_spending})')
+        plt.axhline(round(income/30), color="#b30000", linestyle='--',
+                    linewidth=2, label=f'Suggested spending: ({round(income/30)})')
+        plt.xticks(rotation=90)
+        plt.title('Expense Trend Over Time')
+        plt.savefig(os.path.join('static', 'charts','trend.png'))
+        plt.close()
 
-    #plot chart (total / budget percentage per day)
-    plt.figure(figsize=(8,6))
-    percent = extracted_df['total'] / income* 100
-    plt.bar(extracted_df['date'], percent, color='#e67e22')
-    plt.gca().set_yticks(plt.gca().get_yticks())  # Re-assert y-ticks
-    plt.gca().set_yticklabels([f'{int(y)}%' for y in plt.gca().get_yticks()])
-    plt.xticks(rotation=90)
-    plt.title('Date VS Spending Percentage')
-    plt.savefig(os.path.join('static', 'charts', 'plot.png'))
-    plt.close()
-    #table:
-    html_table = extracted_df.to_html()
-    #All the data:
-    data = {
-        'account': account,
-        'biggest_day': biggest_day,
-        'budget': income,
-        'saving': saving,
-        'smallest_day': smallest_day,
-        'total_sum': total_sum,
-        'days': days,
-        'food': food,
-        'transportation': transportation,
-        'shopping': shopping,
-        'bills': bills,
-        'entertainment': entertainment,
-        'healthcare': healthcare,
-        'max_category': max_category,
-        'daily_spending': daily_spending,
-        'html_table': html_table,
-        'message': message,
-        'trend': os.path.join('static', 'charts', 'trend.png'),
-        'plot': os.path.join('static', 'charts','plot.png'),
-        'pie': os.path.join('static', 'charts', 'pie.png')
-    }
-    #rendering:
-    env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template('template.html')
-    html = template.render(data)
-
-    with open(os.path.join('templates', 'dashboard.html'), 'w', encoding='utf-8') as f:
-        f.write(html)
-    return jsonify({'message':"Dashboard generated successfully"})
+        #plot chart (total / budget percentage per day)
+        plt.figure(figsize=(8,6))
+        percent = extracted_df['total'] / income* 100
+        plt.bar(extracted_df['date'], percent, color='#e67e22')
+        plt.gca().set_yticks(plt.gca().get_yticks())  # Re-assert y-ticks
+        plt.gca().set_yticklabels([f'{int(y)}%' for y in plt.gca().get_yticks()])
+        plt.xticks(rotation=90)
+        plt.title('Date VS Spending Percentage')
+        plt.savefig(os.path.join('static', 'charts', 'plot.png'))
+        plt.close()
+        #table:
+        html_table = extracted_df.to_html()
+        #All the data:
+        data = {
+            'account': account,
+            'biggest_day': biggest_day,
+            'budget': income,
+            'saving': saving,
+            'smallest_day': smallest_day,
+            'total_sum': total_sum,
+            'days': days,
+            'food': food,
+            'transportation': transportation,
+            'shopping': shopping,
+            'bills': bills,
+            'entertainment': entertainment,
+            'healthcare': healthcare,
+            'max_category': max_category,
+            'daily_spending': daily_spending,
+            'html_table': html_table,
+            'message': message,
+            'trend': os.path.join('static', 'charts', 'trend.png'),
+            'plot': os.path.join('static', 'charts','plot.png'),
+            'pie': os.path.join('static', 'charts', 'pie.png')
+        }
+        #rendering:
+        return render_template('template.html', **data)
+    except:
+        return render_template('error.html')
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
