@@ -83,6 +83,7 @@ pip install flask pandas matplotlib jinja2
   - dashboard.html
   - change.html
   - template.html
+  - error.html
 
 - A static/ folder with:
   - `login.css`
@@ -105,5 +106,4 @@ If you are intrested, I have a repo only for it here:
 ---
 
 ## 🙌 Credits
-Developed by <strong>Kevin Ehab</strong><br>
-Feel free to fork, contribute, or suggest features!
+Developed by <strong>Kevin Ehab</strong>
