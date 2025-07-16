@@ -12,6 +12,8 @@ function login(){
         if (data.redirect){
             window.location = '/options'
             localStorage.setItem('state', 'logged')
+        }else{
+            window.location = '/signup'
         }
     })
 }
