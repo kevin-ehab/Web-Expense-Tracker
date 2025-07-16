@@ -39,9 +39,20 @@ An interactive and secure expense tracking web app built with **Flask**, **Panda
 | ![Trend Line](static/charts/trend.png) | Daily spending trend       |
 | ![Bar Chart](static/charts/plot.png)   | Daily spending % of budget |
 
+---
 
 ## 🕹 Demo link
 Try the app using this link: [Expense Tracker](https://web-expense-tracker-production.up.railway.app/)
+
+---
+
+## 📕Guide
+1. open the demo link
+2. click `sign up`
+3. add your email password income and saving goal and click sign up
+4. add your expenses by clicking on `add data` (do this daily)
+5. click `generate dashboard` and see the insights and info about your spending patterns
+6. if you want to change the entered income or saving goal, click on the last button and change them.
 
 ---
 
@@ -83,31 +94,6 @@ python main.py
 ```
 Then visit:
 📍 <a href='http://localhost:5000'>http://localhost:5000</a>
-
----
-
-## 📂 Project Structure
-
-Web-Expense-Tracker/<br>
-├── main.py<br>
-├── simple_encrypter.py<br>
-├── Classified.csv<br>
-├── Expenses.csv<br>
-├── template.html<br>
-├── templates/<br>
-│ ├── home.html<br>
-│ ├── login.html<br>
-│ ├── signup.html<br>
-│ ├── options.html<br>
-│ ├── categories.html<br>
-│ ├── change.html<br>
-│ └── dashboard.html<br>
-├── static/<br>
-│ ├── login.css<br>
-│ └── charts/<br>
-│ ├── pie.png<br>
-│ ├── trend.png<br>
-│ └── plot.png
 
 ---
 
