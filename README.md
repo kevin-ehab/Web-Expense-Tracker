@@ -24,7 +24,7 @@ An interactive and secure expense tracking web app built with **Flask**, **Panda
 
 ## 🛠 Tech Stack:
 
-- **Backend:** Flask, Pandas
+- **Backend:** Python(Flask, Pandas)
 - **Frontend:** HTML, CSS, JavaScript
 - **Visualization:** Matplotlib
 - **Encryption:** Self-made `simple_encrypter` module
