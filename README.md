@@ -35,9 +35,9 @@ An interactive and secure expense tracking web app built with **Flask**, **Panda
 
 | Chart                                  | Description                |
 | -------------------------------------- | -------------------------- |
-| ![Pie Chart](static/charts/pie.png)    | Expense by category        |
-| ![Trend Line](static/charts/trend.png) | Daily spending trend       |
-| ![Bar Chart](static/charts/plot.png)   | Daily spending % of budget |
+| ![Pie Chart](https://github.com/user-attachments/assets/80ec048c-c322-4b57-bd61-923001247d63)    | Expense by category        |
+| ![Trend Line](https://github.com/user-attachments/assets/b80696e8-4616-465f-a8fc-d89d31310240) | Daily spending trend       |
+| ![Bar Chart](https://github.com/user-attachments/assets/db75b6e7-a097-40e8-beef-45f4628a3c86)   | Daily spending % of budget |
 
 ---
 
