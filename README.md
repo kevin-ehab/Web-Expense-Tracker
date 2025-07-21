@@ -69,26 +69,42 @@ cd flask-expense-tracker
 pip install flask pandas matplotlib jinja2
 ```
 ### 3. Create Required Files
-<strong>Ensure you have:</strong><br>
-
-- `Expenses.csv` and `Classified.csv` in the root directory
-
-- A templates/ folder with:
-
-  - home.html
-  - login.html
-  - signup.html
-  - options.html
-  - categories.html
-  - dashboard.html
-  - change.html
-  - template.html
-  - error.html
-
-- A static/ folder with:
-  - `login.css`
-  - a `JS` file for almost each html file
-  - charts/ folder for saving generated charts
+<strong>Ensure you have this folder structure:</strong><br>
+<pre>
+📁Web-Expense-Tracker
+│   Classified.csv
+│   Expenses.csv
+│   main.py
+│   Procfile
+│   README.md
+│   requirements.txt
+│   simple_encrypter.py
+│
+├───static
+│   │   categories.js
+│   │   change.js
+│   │   home.js
+│   │   login.css
+│   │   login.js
+│   │   logo.png
+│   │   options.js
+│   │   signup.js
+│   │
+│   └───charts
+│           pie.png
+│           plot.png
+│           trend.png
+│
+└───templates
+        categories.html
+        change.html
+        error.html
+        home.html
+        login.html
+        options.html
+        signup.html
+        template.html
+</pre>
 ### 4. Run the App
 ```bash
 python main.py
