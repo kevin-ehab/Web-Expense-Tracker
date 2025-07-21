@@ -66,7 +66,7 @@ cd flask-expense-tracker
 ```
 ### 2. Install Requirements
 ```bash
-pip install flask pandas matplotlib jinja2
+pip install flask pandas matplotlib
 ```
 ### 3. Create Required Files
 <strong>Ensure you have this folder structure:</strong><br>
