@@ -1,6 +1,6 @@
 # 💰 Flask Expense Tracker
 
-An interactive and secure expense tracking web app built with **Flask**, **Pandas**, **Matplotlib**, **Jinja2**, and **JavaScript**. It lets users log their daily expenses, visualize spending trends, manage savings goals, and view insightful dashboards.
+An interactive and secure expense tracking web app built with **Flask**, **Pandas**, **Matplotlib**, and **JavaScript**. It lets users log their daily expenses, visualize spending trends, manage savings goals, and view insightful dashboards.
 <p align="center">
   <img src="static/logo.png" alt="Description" width="300"/>
 </p>
