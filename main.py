@@ -105,18 +105,17 @@ def categories():
     except:
         return jsonify({'message': "Entries must be numbers", 'redirect':0})
     total = food + transportation + shopping + bills + entertainment + healthcare
-if date in expenses[expenses['account'] == account]['date'].values:
-    idx = expenses[(expenses['account'] == account) & (expenses['date'] == date)].index
-    expenses.loc[idx, 'food'] = food
-    expenses.loc[idx, 'transportation'] = transportation
-    expenses.loc[idx, 'shopping'] = shopping
-    expenses.loc[idx, 'bills'] = bills
-    expenses.loc[idx, 'entertainment'] = entertainment
-    expenses.loc[idx, 'healthcare'] = healthcare
-    expenses.loc[idx, 'total'] = total
-
-    expenses.to_csv('Expenses.csv', index=False)
-    return jsonify({"message": 'Entries changed successfully!', 'redirect': 1})
+    if date in expenses[expenses['account'] == account]['date'].values:
+        idx = expenses[(expenses['account'] == account) & (expenses['date'] == date)].index
+        expenses.loc[idx, 'food'] = food
+        expenses.loc[idx, 'transportation'] = transportation
+        expenses.loc[idx, 'shopping'] = shopping
+        expenses.loc[idx, 'bills'] = bills
+        expenses.loc[idx, 'entertainment'] = entertainment
+        expenses.loc[idx, 'healthcare'] = healthcare
+        expenses.loc[idx, 'total'] = total
+        expenses.to_csv('Expenses.csv', index=False)
+        return jsonify({"message": 'Entries changed successfully!', 'redirect': 1})
     data = {
         'account': account,
         'date': date,
