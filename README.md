@@ -56,7 +56,9 @@ Try the app using this link: [Expense Tracker](https://web-expense-tracker-produ
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Running it locally
+
+if you want to use the app but you are worried about the security of the site, here is how to run it locally!
 
 ### 1. Clone the Repo
 
